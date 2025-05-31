@@ -17,7 +17,7 @@ const PublicProfileContent = ({ isOwnProfile = true }: PublicProfileContentProps
 
   // User data that would come from settings
   const userSettings = {
-    name: 'Sandro Williams',
+    name: 'Gerald Goldman',
     profilePicture: '/image/a8e6790e-ddf9-4561-8b5d-9181ba1ce938.png',
     interests: ['DeFi & Trading', 'NFTs & Digital Art', 'Smart Contract Development', 'DAO & Governance']
   };

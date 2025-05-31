@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ArrowRight, Play, Users, TrendingUp, BookOpen, Coins, Network, Vote, Globe, Rocket } from 'lucide-react';
+import { ArrowRight, Play, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import FloatingNavbar from '@/components/FloatingNavbar';
@@ -35,22 +35,22 @@ const Landing = () => {
 
   const howItWorksCards = [
     {
-      icon: <BookOpen className="h-8 w-8" />,
+      icon: <img src="/image/more than courses its an open vault.gif" className="h-8 w-8" alt="Learn Today" />,
       title: "Learn Today",
       description: "Access peer-to-peer learning sessions and contribute to the knowledge vault"
     },
     {
-      icon: <Users className="h-8 w-8" />,
+      icon: <img src="/image/verified skills.png" className="h-8 w-8" alt="Teach Tomorrow" />,
       title: "Teach Tomorrow", 
       description: "Share your expertise and earn XP while helping others grow"
     },
     {
-      icon: <Network className="h-8 w-8" />,
+      icon: <img src="/image/education-that-feeds-itself.png" className="h-8 w-8" alt="Intense Sessions" />,
       title: "Intense Sessions",
       description: "Participate in focused learning experiences with real-time collaboration"
     },
     {
-      icon: <Vote className="h-8 w-8" />,
+      icon: <img src="/image/we don't just learn we govern.png" className="h-8 w-8" alt="Soulbound Certificates" />,
       title: "Soulbound Certificates",
       description: "Earn verified, blockchain-based credentials that stay with you forever"
     }
@@ -92,7 +92,7 @@ const Landing = () => {
             >
               Get Started <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button size="lg" variant="outline" className="border-gray-600 text-white hover:bg-gray-800 px-8 py-4 text-lg">
+            <Button size="lg" variant="outline" className="border-gray-600 text-black hover:bg-gray-800 px-8 py-4 text-lg">
               <Play className="mr-2 h-5 w-5" /> Watch Demo
             </Button>
           </div>
@@ -157,7 +157,7 @@ const Landing = () => {
             </div>
             <div className="relative">
               <div className="w-full h-80 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg border border-blue-500/30 flex items-center justify-center">
-                <Network className="h-32 w-32 text-blue-400 animate-pulse" />
+                <img src="/image/education-that-feeds-itself.png" className="animate-pulse" alt="Education" />
               </div>
             </div>
           </div>
@@ -204,11 +204,11 @@ const Landing = () => {
               </div>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div className="text-green-400">
-                  <TrendingUp className="inline h-4 w-4 mr-1" />
+                  <img src="/image/verified skills.png" className="inline h-4 w-4 mr-1" alt="Teaching" />
                   +150 XP from teaching
                 </div>
                 <div className="text-blue-400">
-                  <Coins className="inline h-4 w-4 mr-1" />
+                  <img src="/image/fair-compensation.png" className="inline h-4 w-4 mr-1" alt="Learning" />
                   +50 XP from learning
                 </div>
               </div>
@@ -223,7 +223,7 @@ const Landing = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative">
               <div className="w-full h-80 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-lg border border-purple-500/30 flex items-center justify-center">
-                <BookOpen className="h-32 w-32 text-purple-400 animate-pulse" />
+                <img src="/image/more than courses its an open vault.gif" className="h-32 w-32 animate-pulse" alt="Open Vault" />
               </div>
             </div>
             <div>
@@ -253,21 +253,21 @@ const Landing = () => {
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="bg-gray-800 border-gray-700">
               <CardContent className="p-6 text-center">
-                <Users className="h-12 w-12 text-blue-400 mx-auto mb-4" />
+                <img src="/image/verified skills.png" className="h-12 w-12 mx-auto mb-4" alt="Verified Skills" />
                 <h3 className="text-xl font-semibold mb-3 text-white">Verified Skills</h3>
                 <p className="text-gray-400">Every skill is backed by verifiable learning history and peer validation</p>
               </CardContent>
             </Card>
             <Card className="bg-gray-800 border-gray-700">
               <CardContent className="p-6 text-center">
-                <Network className="h-12 w-12 text-purple-400 mx-auto mb-4" />
+                <img src="/image/transparent-reputation.png" className="h-12 w-12 mx-auto mb-4" alt="Transparent Reputation" />
                 <h3 className="text-xl font-semibold mb-3 text-white">Transparent Reputation</h3>
                 <p className="text-gray-400">Build your reputation through teaching, learning, and community contribution</p>
               </CardContent>
             </Card>
             <Card className="bg-gray-800 border-gray-700">
               <CardContent className="p-6 text-center">
-                <Coins className="h-12 w-12 text-green-400 mx-auto mb-4" />
+                <img src="/image/fair-compensation.png" className="h-12 w-12 mx-auto mb-4" alt="Fair Compensation" />
                 <h3 className="text-xl font-semibold mb-3 text-white">Fair Compensation</h3>
                 <p className="text-gray-400">XP-based payment system ensures fair value for knowledge and skills</p>
               </CardContent>
@@ -294,7 +294,7 @@ const Landing = () => {
             </div>
             <div className="relative">
               <div className="w-full h-80 bg-gradient-to-br from-green-500/20 to-blue-500/20 rounded-lg border border-green-500/30 flex items-center justify-center">
-                <Vote className="h-32 w-32 text-green-400 animate-pulse" />
+                <img src="/image/we don't just learn we govern.png" className="h-32 w-32 animate-pulse" alt="Governance" />
               </div>
             </div>
           </div>
@@ -312,22 +312,22 @@ const Landing = () => {
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">
-              <Globe className="h-16 w-16 text-blue-400 mx-auto mb-4" />
+              <img src="/image/global-reach.png" className="h-16 w-16 mx-auto mb-4" alt="Global Reach" />
               <h3 className="text-xl font-semibold text-white mb-2">Global Reach</h3>
               <p className="text-gray-400">Connect with learners worldwide</p>
             </div>
             <div className="text-center">
-              <Users className="h-16 w-16 text-purple-400 mx-auto mb-4" />
+              <img src="/image/local-impact.png" className="h-16 w-16 mx-auto mb-4" alt="Local Impact" />
               <h3 className="text-xl font-semibold text-white mb-2">Local Impact</h3>
               <p className="text-gray-400">Solve Africa's education challenges</p>
             </div>
             <div className="text-center">
-              <TrendingUp className="h-16 w-16 text-green-400 mx-auto mb-4" />
+              <img src="/image/verified skills.png" className="h-16 w-16 mx-auto mb-4" alt="Economic Growth" />
               <h3 className="text-xl font-semibold text-white mb-2">Economic Growth</h3>
               <p className="text-gray-400">Create opportunities and wealth</p>
             </div>
             <div className="text-center">
-              <Network className="h-16 w-16 text-blue-400 mx-auto mb-4" />
+              <img src="/image/education-that-feeds-itself.png" className="h-16 w-16 mx-auto mb-4" alt="Knowledge Bridge" />
               <h3 className="text-xl font-semibold text-white mb-2">Knowledge Bridge</h3>
               <p className="text-gray-400">Bridge the global knowledge gap</p>
             </div>
@@ -351,7 +351,7 @@ const Landing = () => {
             >
               Get Started <Rocket className="ml-2 h-5 w-5" />
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg">
+            <Button size="lg" variant="outline" className="border-white text-black hover:bg-black hover:text-white px-8 py-4 text-lg">
               Learn More
             </Button>
           </div>
@@ -366,7 +366,7 @@ const Landing = () => {
           </h3>
           <p className="text-gray-400 mb-6">Decentralized Learning. Verified Knowledge. Infinite Possibilities.</p>
           <div className="text-gray-500 text-sm">
-            © 2024 PeerVerse. Built with ❤️ for Africa and the World.
+            © 2025 PeerVerse. From Michadek23 For the Sui Buildathon PortHarcourt.
           </div>
         </div>
       </footer>
