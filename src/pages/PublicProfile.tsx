@@ -7,8 +7,6 @@ import PublicProfileContent from '../components/PublicProfileContent';
 const PublicProfile = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   
-  // In a real app, this would be determined by comparing the current user ID with the profile being viewed
-  // For now, we'll assume it's the user's own profile when accessed from /public-profile
   const isOwnProfile = true;
 
   return (

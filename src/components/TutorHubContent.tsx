@@ -33,9 +33,42 @@ const TutorHubContent = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showCertificateNotification, setShowCertificateNotification] = useState(false);
   const [newCertificate, setNewCertificate] = useState(null);
+  const [xpBalance, setXpBalance] = useState(0);
+  const [contributions, setContributions] = useState(0);
   
   const { issueCertificate } = useCertificates();
   const { toast } = useToast();
+
+  useEffect(() => {
+    const fetchUserStats = async () => {
+      if (!account?.address || !isAuthenticated) return;
+
+      try {
+        const tx = await contractService.getUserProfile(account.address);
+        const result = await suiClient.devInspectTransactionBlock({
+          transactionBlock: tx.serialize(),
+          sender: account.address
+        });
+
+        if (result.effects?.status?.status === 'success' && result.results?.[0]?.returnValues) {
+          const values = result.results[0].returnValues as Array<[number[], string] | string | number | boolean>;
+          if (values.length >= 3) {
+            setXpBalance(Number(values[0])); // Assuming index 0 contains XP balance
+            setContributions(Number(values[1])); // Assuming index 1 contains contributions
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching user stats:', error);
+        toast({
+          title: "Error",
+          description: "Failed to load user stats",
+          variant: "destructive"
+        });
+      }
+    };
+
+    fetchUserStats();
+  }, [account?.address, isAuthenticated, suiClient, toast]);
 
   const ongoingSessions: OngoingSession[] = [
     {
@@ -181,7 +214,7 @@ const TutorHubContent = () => {
         </div>
 
         {/* XP Contribution Tracker */}
-        <XPContributionTracker />
+        <XPContributionTracker xpBalance={xpBalance} contributions={contributions} />
       </div>
 
       {/* Search and Filters */}

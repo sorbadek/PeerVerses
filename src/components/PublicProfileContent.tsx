@@ -88,7 +88,7 @@ const PublicProfileContent = ({ isOwnProfile = true }: PublicProfileContentProps
                     Connect
                   </Button>
                 )}
-                <Button variant="outline" size="sm" className="border-gray-600 text-white hover:bg-gray-700">
+                <Button variant="outline" size="sm" className="border-gray-600 text-black hover:bg-gray-700">
                   <Share2 className="w-4 h-4 mr-2" />
                   Share Profile
                 </Button>

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { TrendingUp, TrendingDown, AlertTriangle } from 'lucide-react';
 import { useCurrentAccount, useSuiClient } from '@mysten/dapp-kit';
@@ -7,11 +6,14 @@ import { useAuth } from '../hooks/useAuth';
 import { useToast } from './ui/use-toast';
 
 interface Props {
-  xpBalance: number;
-  contributions: number;
+  xpBalance?: number;
+  contributions?: number;
 }
 
-const XPContributionTracker: React.FC<Props> = ({ xpBalance, contributions }) => {
+const XPContributionTracker: React.FC<Props> = ({ 
+  xpBalance = 0, 
+  contributions = 0 
+}) => {
   const account = useCurrentAccount();
   const suiClient = useSuiClient();
   const { isAuthenticated } = useAuth();
@@ -65,7 +67,9 @@ const XPContributionTracker: React.FC<Props> = ({ xpBalance, contributions }) =>
             />
             <span className="text-gray-400 text-sm">Current XP</span>
           </div>
-          <div className="text-2xl font-bold text-white">{xpBalance.toLocaleString()}</div>
+          <div className="text-2xl font-bold text-white">
+            {(xpBalance || 0).toLocaleString()}
+          </div>
           <div className={`text-sm flex items-center justify-center mt-1 ${
             netXPChange >= 0 ? 'text-green-400' : 'text-red-400'
           }`}>
