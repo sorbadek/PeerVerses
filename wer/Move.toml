@@ -1,0 +1,9 @@
+[package]
+name = "PeerVerse"
+edition = "2024.beta" # edition = "legacy" to use legacy (pre-2024) Move
+# license = "MIT"         
+# authors = ["Adeleke Michael"]    
+
+
+[addresses]
+wer = "0x0"

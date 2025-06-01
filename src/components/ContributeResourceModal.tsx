@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { X, Upload, FileText, Video, File, Plus } from 'lucide-react';
 import { Button } from './ui/button';
@@ -7,6 +6,7 @@ import { Textarea } from './ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { useToast } from './ui/use-toast';
+import { useWalrusStorage } from '../hooks/useWalrusStorage';
 
 interface ContributeResourceModalProps {
   isOpen: boolean;
@@ -27,13 +27,22 @@ const ContributeResourceModal = ({ isOpen, onClose, onContribute }: ContributeRe
     fileSize: '',
     author: ''
   });
+  const [resourceFile, setResourceFile] = useState<File | null>(null);
+  const { uploadFile, isUploading, uploadProgress } = useWalrusStorage();
   const { toast } = useToast();
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setResourceFile(file);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.title || !formData.description || !formData.type || !formData.category || !formData.level) {
@@ -45,44 +54,58 @@ const ContributeResourceModal = ({ isOpen, onClose, onContribute }: ContributeRe
       return;
     }
 
-    const newResource = {
-      id: Date.now(),
-      title: formData.title,
-      description: formData.description,
-      type: formData.type as 'video' | 'pdf' | 'file',
-      category: formData.category,
-      level: formData.level,
-      duration: formData.type === 'video' ? formData.duration : undefined,
-      pages: formData.type === 'pdf' ? parseInt(formData.pages) : undefined,
-      fileCount: formData.type === 'file' ? parseInt(formData.fileCount) : undefined,
-      fileSize: formData.fileSize,
-      thumbnail: "/image/a8e6790e-ddf9-4561-8b5d-9181ba1ce938.png",
-      author: formData.author,
-      rating: 4.5,
-      enrolled: 0,
-      downloaded: 0
-    };
+    try {
+      // Upload file to Walrus
+      const fileUrl = resourceFile ? await uploadFile(resourceFile) : '';
 
-    onContribute(newResource);
-    toast({
-      title: "Resource Contributed!",
-      description: "Thank you for contributing to the learning community.",
-    });
-    
-    // Reset form
-    setFormData({
-      title: '',
-      description: '',
-      type: '',
-      category: '',
-      level: '',
-      duration: '',
-      pages: '',
-      fileCount: '',
-      fileSize: '',
-      author: ''
-    });
-    onClose();
+      const newResource = {
+        id: Date.now(),
+        title: formData.title,
+        description: formData.description,
+        type: formData.type as 'video' | 'pdf' | 'file',
+        category: formData.category,
+        level: formData.level,
+        duration: formData.type === 'video' ? formData.duration : undefined,
+        pages: formData.type === 'pdf' ? parseInt(formData.pages) : undefined,
+        fileCount: formData.type === 'file' ? parseInt(formData.fileCount) : undefined,
+        fileSize: formData.fileSize,
+        thumbnail: "/image/a8e6790e-ddf9-4561-8b5d-9181ba1ce938.png",
+        author: formData.author,
+        rating: 4.5,
+        enrolled: 0,
+        downloaded: 0,
+        fileUrl // Add the fileUrl to the resource data
+      };
+
+      onContribute(newResource);
+      toast({
+        title: "Resource Contributed!",
+        description: "Thank you for contributing to the learning community.",
+      });
+      
+      // Reset form
+      setFormData({
+        title: '',
+        description: '',
+        type: '',
+        category: '',
+        level: '',
+        duration: '',
+        pages: '',
+        fileCount: '',
+        fileSize: '',
+        author: ''
+      });
+      setResourceFile(null);
+      onClose();
+    } catch (error) {
+      console.error('Error uploading resource:', error);
+      toast({
+        title: "Upload Error",
+        description: "There was an error uploading your resource. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   const getTypeIcon = () => {
@@ -309,6 +332,18 @@ const ContributeResourceModal = ({ isOpen, onClose, onContribute }: ContributeRe
                 >
                   Choose Files
                 </Button>
+                <input 
+                  type="file" 
+                  onChange={handleFileUpload} 
+                  accept=".pdf,.doc,.docx,.mp4,.jpg,.png"
+                  className="hidden"
+                />
+                {isUploading && (
+                  <div className="mt-4">
+                    <progress value={uploadProgress} max="100" className="w-full h-2 bg-gray-700 rounded" />
+                    <span className="text-sm text-gray-400">{uploadProgress}%</span>
+                  </div>
+                )}
               </div>
             </div>
 
