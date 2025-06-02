@@ -15,9 +15,6 @@ https://www.youtube.com/watch?v=cdsDiA6_Ah4&list=PL3id4Z64z2sNED_aH7UYIFFwy6MsvK
 
 https://docs.enoki.mystenlabs.com
 
-
-
-
 https://blockeden.xyz/docs/sui/sui-typescript-sdk/
 
 https://sdk.mystenlabs.com/typescript

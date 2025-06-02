@@ -7,3 +7,4 @@ edition = "2024.beta" # edition = "legacy" to use legacy (pre-2024) Move
 
 [addresses]
 wer = "0x0"
+storage="0x0"
