@@ -8,8 +8,9 @@ import ContinueLearning from '../components/ContinueLearning';
 import NotificationPanel from '../components/NotificationPanel';
 import { useCurrentAccount, useSuiClient } from '@mysten/dapp-kit';
 import { TransactionBlock } from '@mysten/sui.js/transactions';
-import { CONTRACT_ADDRESS, MODULE_NAME } from '../config/contract';
+import { CONTRACT_ADDRESS, MODULE_NAME } from '../config/contract'; // Make sure this points to your deployed contract
 import { useAuth } from '../hooks/useAuth';
+import { useZkLogin } from '../hooks/useZkLogin'; // Import useZkLogin
 
 const Index = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -32,6 +33,7 @@ const Index = () => {
   const account = useCurrentAccount();
   const suiClient = useSuiClient();
   const { isAuthenticated } = useAuth();
+  const { handleLogin } = useZkLogin(); // Get handleLogin from the hook
 
   const fetchUserData = React.useCallback(async () => {
     if (!account?.address || !isAuthenticated) return;
@@ -89,6 +91,16 @@ const Index = () => {
         
         <main className="flex-1 p-4 lg:p-6 overflow-auto">
           <div className="max-w-7xl mx-auto">
+            {!isAuthenticated && (
+              <div className="mb-4 flex justify-center">
+                <button 
+                  onClick={handleLogin} 
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Login with Google (zkLogin)
+                </button>
+              </div>
+            )}
             <div className="grid grid-cols-1 xl:grid-cols-4 gap-4 lg:gap-6">
               {/* Main Content */}
               <div className="xl:col-span-3 space-y-4 lg:space-y-6">

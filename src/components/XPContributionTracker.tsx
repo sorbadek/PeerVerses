@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { TrendingUp, TrendingDown, AlertTriangle } from 'lucide-react';
-import { useCurrentAccount, useSuiClient } from '@mysten/dapp-kit';
 import { contractService } from '../services/contractService';
 import { useAuth } from '../hooks/useAuth';
 import { useToast } from './ui/use-toast';
+import { useCurrentAccount, useSuiClient } from '@mysten/dapp-kit'; // Added import
 
 interface Props {
   xpBalance?: number;
